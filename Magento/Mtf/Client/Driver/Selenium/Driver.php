@@ -169,6 +169,9 @@ class Driver implements DriverInterface
         foreach (array_reverse($chainElements) as $chainElement) {
             /** @var ElementInterface $chainElement */
             try {
+                if (strpos($chainElement->getLocator()->offsetGet("value"),"//") !== false) {
+                    $chainElement->getLocator()->offsetSet("using", Locator::SELECTOR_XPATH);
+                }
                 // First call "getElement" with $resultElement equal "null" value
                 $contextElement = $this->findElement($chainElement->getLocator(), $contextElement, $wait);
             } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
