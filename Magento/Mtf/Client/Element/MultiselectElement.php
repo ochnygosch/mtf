@@ -88,7 +88,7 @@ class MultiselectElement extends SelectElement
      * @return void
      */
     public function deselectAll() {
-        $options = $this->getElements('option[selected]');
+        $options = $this->getElements('option:checked');
         /** @var SimpleElement $option */
         foreach ($options as $option) {
             if ($option->isSelected()) {
